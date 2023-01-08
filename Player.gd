@@ -43,12 +43,16 @@ func _physics_process(delta):
 	var input_camera = Input.get_vector("rot_left", "rot_right", "up", "down")
 	
 	direction = direction.rotated(Vector3.UP, spring_arm_pivot.rotation.y)
+	
 	if direction:
 		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
 		velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
+		
 		if Input.is_action_pressed("run"):
 			velocity.x = lerp(velocity.x, direction.x * RUN_SPEED, LERP_VAL)
 			velocity.z = lerp(velocity.z, direction.z * RUN_SPEED, LERP_VAL)
+			
+			anim_tree.set("parameters/blendWalkRun/blend_amount", velocity.length() / RUN_SPEED)
 		
 		if Input.is_action_just_pressed("dash"):
 			velocity.x = direction.x * DASH_DISTANCE
@@ -58,12 +62,15 @@ func _physics_process(delta):
 	else:
 		velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
 		velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
+		
+		anim_tree.set("parameters/blendWalkRun/blend_amount", 0)
 	
 	if input_camera:
 		spring_arm_pivot.rotate_y(-input_camera.x * CAMERA_SPEED)
 		spring_arm.rotate_x(-input_camera.y * CAMERA_SPEED)
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -PI/4, PI/4)
 		
+	anim_tree.set("parameters/blendWalkRun/blend_amount", 0)
 	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)
-
+	
 	move_and_slide()
