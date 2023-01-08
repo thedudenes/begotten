@@ -1,0 +1,120 @@
+[gd_scene load_steps=7 format=3 uid="uid://2fjtv0bh8c3c"]
+
+[ext_resource type="PackedScene" uid="uid://dgwwp1aegpbo7" path="res://packed_character.tscn" id="1_0qokn"]
+[ext_resource type="PackedScene" uid="uid://dyo5jhln4q1xk" path="res://DungeonFloor_01.glb" id="2_iliss"]
+[ext_resource type="PackedScene" uid="uid://dxopgvqnwcjy4" path="res://DungeonWall_01.glb" id="3_stjn8"]
+
+[sub_resource type="Environment" id="Environment_a8owh"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rhgyj"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0okjt"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a8owh")
+
+[node name="PackedCharacter" parent="WorldEnvironment" instance=ExtResource("1_0qokn")]
+
+[node name="GrounTesting" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.41137)
+visible = false
+mesh = SubResource("PlaneMesh_rhgyj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WorldEnvironment/GrounTesting"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/GrounTesting/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0okjt")
+
+[node name="GrounTesting2" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -2.19858, 3, -2.41137)
+visible = false
+mesh = SubResource("PlaneMesh_rhgyj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WorldEnvironment/GrounTesting2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/GrounTesting2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0okjt")
+
+[node name="GrounTesting3" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1.93955, 3, -2.41137)
+visible = false
+mesh = SubResource("PlaneMesh_rhgyj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WorldEnvironment/GrounTesting3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/GrounTesting3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0okjt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.731175, 0, 0.68219, -0.482381, 0.707107, 0.517019, -0.482381, -0.707107, 0.517019, 0, 0, 0)
+light_color = Color(0.32549, 0.572549, 0.666667, 1)
+light_energy = 0.123
+shadow_enabled = true
+sky_mode = 1
+
+[node name="DungeonFloor_01" parent="WorldEnvironment" instance=ExtResource("2_iliss")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.121571, -0.053239, 2.82438)
+
+[node name="DungeonFloor_02" parent="WorldEnvironment" instance=ExtResource("2_iliss")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.121571, -0.053239, -1.17562)
+
+[node name="DungeonFloor_03" parent="WorldEnvironment" instance=ExtResource("2_iliss")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.121571, -0.053239, -5.17562)
+
+[node name="DungeonFloor_04" parent="WorldEnvironment" instance=ExtResource("2_iliss")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.121571, -0.053239, -9.17562)
+
+[node name="DungeonFloor_05" parent="WorldEnvironment" instance=ExtResource("2_iliss")]
+transform = Transform3D(4, 0, 0, 0, -4, 3.49691e-07, 0, -3.49691e-07, -4, -0.121571, 3.91321, -9.17562)
+
+[node name="DungeonFloor_06" parent="WorldEnvironment" instance=ExtResource("2_iliss")]
+transform = Transform3D(4, 0, 0, 0, -4, 3.49691e-07, 0, -3.49691e-07, -4, -0.121571, 3.91321, -5.17562)
+
+[node name="DungeonFloor_07" parent="WorldEnvironment" instance=ExtResource("2_iliss")]
+transform = Transform3D(4, 0, 0, 0, -4, 3.49691e-07, 0, -3.49691e-07, -4, -0.121571, 3.91321, -1.17562)
+
+[node name="DungeonFloor_08" parent="WorldEnvironment" instance=ExtResource("2_iliss")]
+transform = Transform3D(4, 0, 0, 0, -4, 3.49691e-07, 0, -3.49691e-07, -4, -0.121571, 3.91321, 2.82438)
+
+[node name="DungeonWall_01" parent="WorldEnvironment" instance=ExtResource("3_stjn8")]
+transform = Transform3D(-4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, -2.34072, 2.00833, 2.82939)
+
+[node name="DungeonWall_02" parent="WorldEnvironment" instance=ExtResource("3_stjn8")]
+transform = Transform3D(-4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, -2.34072, 2.00833, -1.17061)
+
+[node name="DungeonWall_03" parent="WorldEnvironment" instance=ExtResource("3_stjn8")]
+transform = Transform3D(-4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, -2.34072, 2.00833, -5.17061)
+
+[node name="DungeonWall_04" parent="WorldEnvironment" instance=ExtResource("3_stjn8")]
+transform = Transform3D(-4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, -2.34072, 2.00833, -9.17061)
+
+[node name="DungeonWall_05" parent="WorldEnvironment" instance=ExtResource("3_stjn8")]
+transform = Transform3D(4, 0, 6.99382e-07, 0, 4, 0, -6.99382e-07, 0, 4, 2.07702, 1.99302, -9.17061)
+
+[node name="DungeonWall_09" parent="WorldEnvironment" instance=ExtResource("3_stjn8")]
+transform = Transform3D(-8.74228e-07, 0, 4, 0, 4, 0, -4, 0, -8.74228e-07, 2.04131, 1.99302, -11.1706)
+
+[node name="DungeonWall_10" parent="WorldEnvironment" instance=ExtResource("3_stjn8")]
+transform = Transform3D(-8.74228e-07, 0, 4, 0, 4, 0, -4, 0, -8.74228e-07, -1.95869, 1.99302, -11.1706)
+
+[node name="DungeonWall_06" parent="WorldEnvironment" instance=ExtResource("3_stjn8")]
+transform = Transform3D(4, 0, 6.99382e-07, 0, 4, 0, -6.99382e-07, 0, 4, 2.07702, 1.99302, -5.17061)
+
+[node name="DungeonWall_07" parent="WorldEnvironment" instance=ExtResource("3_stjn8")]
+transform = Transform3D(4, 0, 6.99382e-07, 0, 4, 0, -6.99382e-07, 0, 4, 2.07702, 1.99302, -1.17061)
+
+[node name="DungeonWall_08" parent="WorldEnvironment" instance=ExtResource("3_stjn8")]
+transform = Transform3D(4, 0, 6.99382e-07, 0, 4, 0, -6.99382e-07, 0, 4, 2.07702, 1.99302, 2.82939)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.45976, 2.31395)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.45976, -2.54431)
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.45976, -9.42807)
