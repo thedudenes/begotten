@@ -7,10 +7,10 @@ extends CharacterBody3D
 @onready var camera = $SpringArmPivot/SpringArm/Camera3D
 
 const SPEED = 2.0
-const DASH_DISTANCE = 20
-const LERP_VAL = .15
+const DASH_DISTANCE = 35
+const LERP_VAL = .30
 const CAMERA_SPEED = 0.05
-const RUN_SPEED = SPEED * 2
+const RUN_SPEED = 8.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -46,7 +46,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
 		velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
-		if Input.is_action_just_pressed("run"):
+		if Input.is_action_pressed("run"):
 			velocity.x = lerp(velocity.x, direction.x * RUN_SPEED, LERP_VAL)
 			velocity.z = lerp(velocity.z, direction.z * RUN_SPEED, LERP_VAL)
 		
